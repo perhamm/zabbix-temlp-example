@@ -1,0 +1,1797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-03-24T12:08:24Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Netris service status</template>
+            <name>Netris service status</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Service status</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>cctv-amq status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>amq</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://statsrv-coll-01:8080/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cctv-amq down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>ap url status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>ap-url</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://parsiv-01:8086/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>ap-url down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>ap-vas status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>ap-vas</key>
+                    <trends>0</trends>
+                    <authtype>BASIC</authtype>
+                    <username>sa</username>
+                    <password>sqlsql123</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://ap-central-01:8880/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>ap-vas down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>ap-web status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>ap-web</key>
+                    <trends>0</trends>
+                    <authtype>BASIC</authtype>
+                    <username>sa</username>
+                    <password>sqlsql123</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://ap-central-01:8080/ap-web/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>ap-web down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cctv api status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cctv-api</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://parsiv-01:8083/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>cctv api down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn01  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn01</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-01:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn02  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn02</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-02:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn03  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn03</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-03:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn04  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn04</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-04:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn05  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn05</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-05:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>cdn06  port 2222 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>cdn06</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://cdn-06:2222/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>cdn01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>find face lic on test</name>
+                    <type>HTTP_AGENT</type>
+                    <key>fflic</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.valid.value</params>
+                        </step>
+                    </preprocessing>
+                    <url>172.16.63.50:3185/license.json</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot;</expression>
+                            <name>Лицензия на тестовом стенде FindFace id=d3cfe8b94b8c431ea3ef03b36d8f0e27 невалидна</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>find face lic</name>
+                    <type>HTTP_AGENT</type>
+                    <key>fflic-prod</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.valid.value</params>
+                        </step>
+                    </preprocessing>
+                    <url>172.16.63.56:3185/license.json</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot;</expression>
+                            <name>Лицензия на проде FindFace id=8ec8cd9a7cd04c7db7b06350a19d1657 невалидна</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>netvision api status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>netvision</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <url>http://172.16.63.44:31000/indexes</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1</expression>
+                            <name>netvision api down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>parsiv status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>parsiv</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://parsiv-01:8085/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>parsiv down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>portal01 cctv status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>portal-01</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://portal-01:8080/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>portal-01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>portal02 cctv status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>portal-02</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://portal-02:8080/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>portal-02 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec01 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec01</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-01:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec01 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec02 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec02</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-02:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec02 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec03 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec03</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-03:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec03 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec04 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec04</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-04:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec04 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec05 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec05</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-05:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec05 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec06 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec06</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-06:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec06 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec07 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec07</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-07:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec07 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec08 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec08</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-08:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec08 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec09 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec09</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-09:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec09 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec10 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec10</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-10:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec-10 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec11 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec11</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-11:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec11 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec12 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec12</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-12:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec12 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec13 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec13</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-13:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec13 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec14 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec14</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-14:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec14 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec15 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec15</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-15:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec15 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec16 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec16</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-16:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec16 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec17 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec17</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-17:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec17 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec18 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec18</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-18:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec18 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec19 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec19</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-19:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec19 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec20 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec20</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-20:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec20 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec21 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec21</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-21:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec21 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec22 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec22</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-22:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec22 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec23 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec23</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-23:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec23 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec24 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec24</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-24:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec24 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec25 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec25</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-25:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec25 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec26 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec26</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-26:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec26 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec27 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec27</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-27:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec27 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec28 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec28</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-28:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec28 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rec29 status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>rec29</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.success</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://rec-29:2032/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;true&quot; or {nodata(3m)}=1</expression>
+                            <name>rec29 down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-01 ptz status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-01-ptz</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-01:8085/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-01-ptz down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-01 token status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-01-token</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-01:8081/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-01-token down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-01 url status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-01-url</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-01:8082/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-01-url down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-01 video status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-01-video</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-01:8083/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-01-video down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-02 ptz status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-02-ptz</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-02:8085/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-02-ptz down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-02 token status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-02-token</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-02:8081/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-02-token down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-02 url status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-02-url</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-02:8082/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-02-url down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>services-02 video status</name>
+                    <type>HTTP_AGENT</type>
+                    <key>services-02-video</key>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.status</params>
+                        </step>
+                    </preprocessing>
+                    <url>http://services-02:8083/status</url>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;&quot;200&quot; or {nodata(3m)}=1</expression>
+                            <name>services-02-video down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>findface  - свободные слоты для индекса</name>
+                    <type>SSH</type>
+                    <key>ssh.run[cameras,172.16.63.32]</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>expr  $(curl -s 172.16.63.56:3185/license.json | jq '.limits[] | select(.name == &quot;cameras&quot;).value') - $(curl -s 172.16.63.56:3185/license.json | jq '.limits[] | select(.name == &quot;cameras&quot;).current')</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;=0</expression>
+                            <name>Количество слотов под камеры для лиц закончилось ( не является ошибкой, но на индекс больше не поставить )</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>collector</name>
+                    <type>SSH</type>
+                    <key>ssh.run[collector,172.16.63.33]</key>
+                    <trends>0</trends>
+                    <params>ps aux | grep java | grep /opt/netris/collector | grep -v grep  | wc -l</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>collector is not running</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>hdfs DataNode</name>
+                    <type>SSH</type>
+                    <key>ssh.run[DataNode,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.hdfs.server.datanode.DataNode &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>DataNode down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>findface  - свободные слоты для лиц</name>
+                    <type>SSH</type>
+                    <key>ssh.run[faces,172.16.63.32]</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>expr  $(curl -s 172.16.63.56:3185/license.json | jq '.limits[] | select(.name == &quot;faces&quot;).value') - $(curl -s 172.16.63.56:3185/license.json | jq '.limits[] | select(.name == &quot;faces&quot;).current')</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;=0</expression>
+                            <name>Количество слотов под лица закончилось (не будет работать ЛМ и историч поиск по лицам)</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>hbase HMaster</name>
+                    <type>SSH</type>
+                    <key>ssh.run[HMaster,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.hbase.master.HMaster &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>HMaster down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>hbase HRegionServer</name>
+                    <type>SSH</type>
+                    <key>ssh.run[HRegionServer,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.hbase.regionserver.HRegionServer &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>HRegionServer down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>itv - количество камер на индексации</name>
+                    <type>SSH</type>
+                    <key>ssh.run[itv,172.16.63.32]</key>
+                    <trends>0</trends>
+                    <params>curl -s http://root:root@172.16.63.62:8000/camera/list | jq  '.cameras[] | (.displayName |tostring)+ &quot;/&quot; + (.detectors[0] | (.accessPoint|tostring)+ &quot;/&quot; + (.displayName |tostring) )' | wc -l</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{avg(5m)}&gt;2</recovery_expression>
+                            <name>itv  - нет камер на индексации</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>hdfs NameNode</name>
+                    <type>SSH</type>
+                    <key>ssh.run[namenode,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.hdfs.server.namenode.NameNode &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>namenode down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>netvision - количество камер на индексации</name>
+                    <type>SSH</type>
+                    <key>ssh.run[netvision,172.16.63.32]</key>
+                    <trends>0</trends>
+                    <params>curl -s 172.16.63.44:31000/indexes | jq . | grep camera | wc -l</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{avg(5m)}&gt;2</recovery_expression>
+                            <name>netvision - нет камер на индексации</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>reporter</name>
+                    <type>SSH</type>
+                    <key>ssh.run[reporter,172.16.63.28]</key>
+                    <trends>0</trends>
+                    <params>ps aux | grep java | grep /opt/netris/reporter | grep -v grep  | wc -l</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>reporter is not running</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>rscat</name>
+                    <type>SSH</type>
+                    <key>ssh.run[rscat,172.16.63.28]</key>
+                    <trends>0</trends>
+                    <params>ps aux | grep java | grep /opt/netris/rscat| grep -v grep  | wc -l</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>rscat is not running</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>hdfs SecondaryNameNode</name>
+                    <type>SSH</type>
+                    <key>ssh.run[SecondaryNameNode,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.hdfs.server.namenode.SecondaryNameNode &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>SecondaryNameNode down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>flink YarnSessionClusterEntrypoint</name>
+                    <type>SSH</type>
+                    <key>ssh.run[YarnSessionClusterEntrypoint,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep flink.yarn.entrypoint.YarnSessionClusterEntrypoint &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>YarnSessionClusterEntrypoint down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>flink YarnTaskExecutorRunner</name>
+                    <type>SSH</type>
+                    <key>ssh.run[YarnTaskExecutorRunner,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep flink.yarn.YarnTaskExecutorRunner &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>YarnTaskExecutorRunner down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>yarn nodemanager run</name>
+                    <type>SSH</type>
+                    <key>ssh.run[yarn_nodemanager,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.yarn.server.nodemanager &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>yarn_nodemanager down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>yarn resourcemanager run</name>
+                    <type>SSH</type>
+                    <key>ssh.run[yarn_resourcemanager,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep hadoop.yarn.server.resourcemanager &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>yarn_resourcemanager down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>zookeeper</name>
+                    <type>SSH</type>
+                    <key>ssh.run[zookeeper,172.16.63.37]</key>
+                    <trends>0</trends>
+                    <params>ps -eo args | grep java | grep -v grep | grep -v bash | grep -v '*java' | sed 's/^.*java[\t ]\|[-%][^ ]*[\t ]//g' | grep zookeeper &gt; /dev/null; echo $?</params>
+                    <username>zabbix-ssh</username>
+                    <password>31415926</password>
+                    <applications>
+                        <application>
+                            <name>Service status</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(3m)}=1  or {last()}&lt;&gt;0</expression>
+                            <name>zookeeper down</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
